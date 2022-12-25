@@ -30,4 +30,15 @@ public class ReaderDao {
         }
         return reader;
     }
+
+    public static int insertReader(Connection connection, Reader reader) throws SQLException {
+        String insert = "insert into reader values (null, ?, ?, ?, ?, ?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(insert);
+        preparedStatement.setString(1, reader.getIdReader());
+        preparedStatement.setString(2, reader.getNameReader());
+        preparedStatement.setString(3, reader.getKind());
+        preparedStatement.setString(4, reader.getSex());
+        preparedStatement.setString(5, reader.getPassword());
+        return preparedStatement.executeUpdate();
+    }
 }

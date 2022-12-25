@@ -20,6 +20,18 @@ public class Reader {
                 '}';
     }
 
+    public Reader(Integer id, String idReader, String nameReader, String kind, String sex, String password) {
+        this.id = id;
+        this.idReader = idReader;
+        this.nameReader = nameReader;
+        this.kind = kind;
+        this.sex = sex;
+        this.password = password;
+    }
+
+    public Reader() {
+    }
+
     public Integer getId() {
         return id;
     }
