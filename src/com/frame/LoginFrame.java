@@ -118,6 +118,7 @@ public class LoginFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "登录失败", "管理员登录", JOptionPane. ERROR_MESSAGE);
                     cleanTextFieldText();
+
                 }
             }
         });
