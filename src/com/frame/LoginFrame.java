@@ -97,7 +97,8 @@ public class LoginFrame {
                     cleanTextFieldText();
                     readerFrame.init();
                 } else {
-                    //todo reader 查询不到
+                    JOptionPane.showMessageDialog(null, "登录失败", "用户登录", JOptionPane. ERROR_MESSAGE);
+                    cleanTextFieldText();
                 }
 
             } else {
@@ -115,7 +116,8 @@ public class LoginFrame {
                     cleanTextFieldText();
                     librarianFrame.init();
                 } else {
-                    //todo admin 查询不到
+                    JOptionPane.showMessageDialog(null, "登录失败", "管理员登录", JOptionPane. ERROR_MESSAGE);
+                    cleanTextFieldText();
                 }
             }
         });
