@@ -1,9 +1,6 @@
 package com.dao;
 
 import com.domain.Admin;
-import com.tools.DBTools;
-import org.jetbrains.annotations.NotNull;
-import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,7 +1,6 @@
 package com.frame;
 
 import javax.swing.*;
-import java.awt.*;
 import java.sql.Connection;
 
 public class TestFrame {
