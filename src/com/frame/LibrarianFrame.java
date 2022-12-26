@@ -346,9 +346,4 @@ public class LibrarianFrame {
         sexEditTextField.setText("");
         passwordEditTextField.setText("");
     }
-
-    public static void main(String[] args) {
-        new LibrarianFrame().init();
-    }
-
 }

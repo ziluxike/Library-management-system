@@ -31,6 +31,36 @@ public class ReaderDao {
         return reader;
     }
 
+    public static Reader SelectByIdReader(Connection connection, String idReader) throws SQLException {
+        Reader reader = null;
+        String select = "SELECT * FROM reader WHERE idReader = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(select);
+        preparedStatement.setString(1, idReader);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            reader = new Reader();
+            reader.setId(resultSet.getInt("id"));
+            reader.setIdReader(resultSet.getString("idReader"));
+            reader.setNameReader(resultSet.getString("nameReader"));
+            reader.setKind(resultSet.getString("kind"));
+            reader.setSex(resultSet.getString("sex"));
+            reader.setPassword(resultSet.getString("password"));
+        }
+        return reader;
+    }
+
+    public static int UpdateReader(Connection connection, String nameReader, String kind, String sex, String password) throws SQLException {
+        int i;
+        String select = "UPDATE reader set nameReader = ?, kind = ?, sex = ?, password = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(select);
+        preparedStatement.setString(1, nameReader);
+        preparedStatement.setString(2, kind);
+        preparedStatement.setString(3, sex);
+        preparedStatement.setString(4, password);
+        i = preparedStatement.executeUpdate();
+        return i;
+    }
+
     public static int insertReader(Connection connection, Reader reader) throws SQLException {
         String insert = "insert into reader values (null, ?, ?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(insert);

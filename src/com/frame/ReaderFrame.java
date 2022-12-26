@@ -257,8 +257,4 @@ public class ReaderFrame {
         readerMainFrame.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        ReaderFrame readerFrame = new ReaderFrame();
-        readerFrame.init();
-    }
 }
