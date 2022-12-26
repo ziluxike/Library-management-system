@@ -14,16 +14,16 @@ import java.sql.SQLException;
 public class LoginFrame {
     private Connection connection = DBTools.getConnection();
 
-    JFrame frame = new JFrame("用户登录");
+    JFrame LoginMainFrame = new JFrame("用户登录");
 
 
-    private JLabel label1 = new JLabel("用户:");
-    private JLabel label2 = new JLabel("密码:");
+    private JLabel usernameLabel = new JLabel("用户:");
+    private JLabel passwordLabel = new JLabel("密码:");
 
-    private TextField textField1 = new TextField();
-    private TextField textField2 = new TextField();
+    private TextField usernameTextField = new TextField();
+    private TextField passwordTextField = new TextField();
 
-    private JButton button1 = new JButton("显示密码");
+    private JButton showPasswordButton = new JButton("显示密码");
 
 
 
@@ -32,32 +32,32 @@ public class LoginFrame {
 
     private CheckboxGroup checkboxGroup = new CheckboxGroup();
 
-    private JButton button2 = new JButton("登录");
+    private JButton LoginButton = new JButton("登录");
 
     public void init() {
-        frame.setSize(500,700);
-        frame.setLayout(null);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        LoginMainFrame.setSize(500,700);
+        LoginMainFrame.setLayout(null);
+        LoginMainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        label1.setBounds(140,200,40,20);
-        frame.add(label1);
-        label2.setBounds(140,240,40,20);
-        frame.add(label2);
+        usernameLabel.setBounds(140,200,40,20);
+        LoginMainFrame.add(usernameLabel);
+        passwordLabel.setBounds(140,240,40,20);
+        LoginMainFrame.add(passwordLabel);
 
-        frame.add(textField1);
-        textField1.setBounds(180,200,100,20);
-        frame.add(textField2);
-        textField2.setBounds(180,240,100,20);
-        textField2.setEchoChar('*');
+        LoginMainFrame.add(usernameTextField);
+        usernameTextField.setBounds(180,200,100,20);
+        LoginMainFrame.add(passwordTextField);
+        passwordTextField.setBounds(180,240,100,20);
+        passwordTextField.setEchoChar('*');
 
-        button1.setBounds(300,240,100,20);
-        frame.add(button1);
+        showPasswordButton.setBounds(300,240,100,20);
+        LoginMainFrame.add(showPasswordButton);
 
-        button1.addActionListener(e -> {
-            if (textField2.getEchoChar() == '*') {
-                textField2.setEchoChar((char)0);
+        showPasswordButton.addActionListener(e -> {
+            if (passwordTextField.getEchoChar() == '*') {
+                passwordTextField.setEchoChar((char)0);
             } else {
-                textField2.setEchoChar('*');
+                passwordTextField.setEchoChar('*');
             }
         });
 
@@ -69,31 +69,31 @@ public class LoginFrame {
         checkbox1.setState(true);
 
         checkbox1.setBounds(170,280,58,20);
-        frame.add(checkbox1);
+        LoginMainFrame.add(checkbox1);
         checkbox2.setBounds(235,280,100,20);
-        frame.add(checkbox2);
+        LoginMainFrame.add(checkbox2);
 
 
 
-        button2.setBounds(150,320,150,35);
+        LoginButton.setBounds(150,320,150,35);
 
-        frame.add(button2);
+        LoginMainFrame.add(LoginButton);
 
-        button2.addActionListener(e -> {
+        LoginButton.addActionListener(e -> {
             // 读者
             if (checkbox1.getState() == true) {
                 Reader reader;
                 try {
-                    reader = ReaderDao.SelectByIdReaderAndPass(connection, textField1.getText(), textField2.getText());
+                    reader = ReaderDao.SelectByIdReaderAndPass(connection, usernameTextField.getText(), passwordTextField.getText());
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
 
 
                 if (reader != null) {
-                    ReaderFrame readerFrame = new ReaderFrame(reader, connection, frame);
-                    readerFrame.frame.setLocation(frame.getX(),frame.getY());
-                    frame.setVisible(false);
+                    ReaderFrame readerFrame = new ReaderFrame(reader, connection, LoginMainFrame);
+                    readerFrame.readerMainFrame.setLocation(LoginMainFrame.getX(), LoginMainFrame.getY());
+                    LoginMainFrame.setVisible(false);
                     cleanTextFieldText();
                     readerFrame.init();
                 } else {
@@ -104,15 +104,15 @@ public class LoginFrame {
             } else {
                 Admin admin;
                 try {
-                    admin = AdminDao.SelectByNameAndPass(connection, textField1.getText(), textField2.getText());
+                    admin = AdminDao.SelectByNameAndPass(connection, usernameTextField.getText(), passwordTextField.getText());
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
 
                 if (admin != null) {
-                    LibrarianFrame librarianFrame = new LibrarianFrame(admin, connection, frame);
-                    librarianFrame.frame.setLocation(frame.getX(),frame.getY());
-                    frame.setVisible(false);
+                    LibrarianFrame librarianFrame = new LibrarianFrame(admin, connection, LoginMainFrame);
+                    librarianFrame.readerMainFrame.setLocation(LoginMainFrame.getX(), LoginMainFrame.getY());
+                    LoginMainFrame.setVisible(false);
                     cleanTextFieldText();
                     librarianFrame.init();
                 } else {
@@ -124,12 +124,12 @@ public class LoginFrame {
         });
 
 
-        frame.setVisible(true);
+        LoginMainFrame.setVisible(true);
     }
 
     public void cleanTextFieldText() {
-        textField1.setText("");
-        textField2.setText("");
+        usernameTextField.setText("");
+        passwordTextField.setText("");
     }
 
     public static void main(String[] args) {
