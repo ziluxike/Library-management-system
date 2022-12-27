@@ -129,7 +129,7 @@ public class LibrarianFrame {
             int i = 0;
             Reader reader = new Reader(null, idReaderTextField.getText(), nameReaderTextField.getText(), kindReaderTextField.getText(), sexTextField.getText(), passwordTextField.getText());
             try {
-                i = ReaderDao.insertReader(connection,reader);
+                i = ReaderDao.regReader(connection,reader);
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
@@ -391,7 +391,7 @@ public class LibrarianFrame {
         selectDueBookButton.setBounds(60,150,80,50);
         editBorrowLabel.add(selectDueBookButton);
 
-        JButton updateDueBorrowButton = new JButton("借书/还书");
+        JButton updateDueBorrowButton = new JButton("更改");
         updateDueBorrowButton.setBounds(160,150,80,50);
         updateDueBorrowButton.setEnabled(false);
         editBorrowLabel.add(updateDueBorrowButton);

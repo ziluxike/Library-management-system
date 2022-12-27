@@ -29,10 +29,10 @@ public class ReaderFrame {
 
 
     TextField idBookTextField = new TextField();
-    TextField statusTextField = new TextField("未知,请查询");
+    TextField statusTextField = new TextField("无结果");
     TextField nameReaderTextField = new TextField();
     TextField idDueBookTextField = new TextField();
-    TextField statusDueTextField = new TextField("未知,请查询");
+    TextField statusDueTextField = new TextField("无结果");
     TextField nameDueReaderTextField = new TextField();
 
     List<JLabel> labels = new ArrayList<>();
@@ -151,7 +151,7 @@ public class ReaderFrame {
                 JOptionPane.showMessageDialog(null, "借书失败!", "消息", JOptionPane. ERROR_MESSAGE);
             }
             idBookTextField.setText("");
-            statusTextField.setText("未知,请查询");
+            statusTextField.setText("无结果");
             selectBookButton.setEnabled(true);
             updateBorrowButton.setEnabled(false);
         });
@@ -231,7 +231,7 @@ public class ReaderFrame {
             }
 
             idDueBookTextField.setText("");
-            statusDueTextField.setText("未知,请查询");
+            statusDueTextField.setText("无结果");
             selectDueBookButton.setEnabled(true);
             updateDueBorrowButton.setEnabled(false);
         });

@@ -61,7 +61,7 @@ public class ReaderDao {
         return i;
     }
 
-    public static int insertReader(Connection connection, Reader reader) throws SQLException {
+    public static int regReader(Connection connection, Reader reader) throws SQLException {
         String insert = "insert into reader values (null, ?, ?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(insert);
         preparedStatement.setString(1, reader.getIdReader());

@@ -16,22 +16,22 @@ public class LoginFrame {
     JFrame LoginMainFrame = new JFrame("用户登录");
 
 
-    private JLabel usernameLabel = new JLabel("用户:");
-    private JLabel passwordLabel = new JLabel("密码:");
+    JLabel usernameLabel = new JLabel("用户:");
+    JLabel passwordLabel = new JLabel("密码:");
 
-    private TextField usernameTextField = new TextField();
-    private TextField passwordTextField = new TextField();
+    TextField usernameTextField = new TextField();
+    TextField passwordTextField = new TextField();
 
-    private JButton showPasswordButton = new JButton("显示密码");
+    JButton showPasswordButton = new JButton("显示密码");
 
 
 
-    private Checkbox checkbox1 = new Checkbox("读者");
-    private Checkbox checkbox2 = new Checkbox("管理员");
+    Checkbox checkbox1 = new Checkbox("读者");
+    Checkbox checkbox2 = new Checkbox("管理员");
 
-    private CheckboxGroup checkboxGroup = new CheckboxGroup();
+    CheckboxGroup checkboxGroup = new CheckboxGroup();
 
-    private JButton LoginButton = new JButton("登录");
+    JButton LoginButton = new JButton("登录");
 
     public void init() {
         LoginMainFrame.setSize(500,700);
@@ -80,7 +80,7 @@ public class LoginFrame {
 
         LoginButton.addActionListener(e -> {
             // 读者
-            if (checkbox1.getState() == true) {
+            if (checkbox1.getState()) {
                 Reader reader;
                 try {
                     reader = ReaderDao.SelectByIdReaderAndPass(connection, usernameTextField.getText(), passwordTextField.getText());
@@ -93,11 +93,9 @@ public class LoginFrame {
                     ReaderFrame readerFrame = new ReaderFrame(reader, connection, LoginMainFrame);
                     readerFrame.readerMainFrame.setLocation(LoginMainFrame.getX(), LoginMainFrame.getY());
                     LoginMainFrame.setVisible(false);
-                    cleanTextFieldText();
                     readerFrame.init();
                 } else {
                     JOptionPane.showMessageDialog(null, "登录失败", "用户登录", JOptionPane. ERROR_MESSAGE);
-                    cleanTextFieldText();
                 }
 
             } else {
@@ -112,12 +110,9 @@ public class LoginFrame {
                     LibrarianFrame librarianFrame = new LibrarianFrame(admin, connection, LoginMainFrame);
                     librarianFrame.readerMainFrame.setLocation(LoginMainFrame.getX(), LoginMainFrame.getY());
                     LoginMainFrame.setVisible(false);
-                    cleanTextFieldText();
                     librarianFrame.init();
                 } else {
                     JOptionPane.showMessageDialog(null, "登录失败", "管理员登录", JOptionPane. ERROR_MESSAGE);
-                    cleanTextFieldText();
-
                 }
             }
         });
@@ -126,8 +121,4 @@ public class LoginFrame {
         LoginMainFrame.setVisible(true);
     }
 
-    public void cleanTextFieldText() {
-        usernameTextField.setText("");
-        passwordTextField.setText("");
-    }
 }
