@@ -26,6 +26,27 @@ public class BookDao {
         return preparedStatement.executeUpdate();
     }
 
+    public static int delete(Connection connection, String idBook) throws SQLException {
+        int i = 0;
+        String delete = "delete from book where idBook = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(delete);
+        preparedStatement.setString(1, idBook);
+        i = preparedStatement.executeUpdate();
+        return i;
+    }
+
+    public static int update(Connection connection, Book book) throws SQLException {
+        String update = "update book set nameBook = ?, price = ?, author = ?, publisher = ?, kind = ? where idBook = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(update);
+        preparedStatement.setString(1, book.getNameBook());
+        preparedStatement.setFloat(2, book.getPrice());
+        preparedStatement.setString(3, book.getAuthor());
+        preparedStatement.setString(4, book.getPublisher());
+        preparedStatement.setString(5,book.getKind());
+        preparedStatement.setString(6,book.getIdBook());
+        return preparedStatement.executeUpdate();
+    }
+
     public static String SelectByIdBook(Connection connection, String idBook) throws SQLException {
         String nameBook = "";
         String select = "SELECT * FROM book WHERE idBook = ?";

@@ -4,9 +4,7 @@ import com.dao.AdminDao;
 import com.dao.ReaderDao;
 import com.domain.Admin;
 import com.domain.Reader;
-import com.mysql.cj.log.Log;
 import com.tools.DBTools;
-
 import javax.swing.*;
 import java.awt.*;
 import java.sql.Connection;
